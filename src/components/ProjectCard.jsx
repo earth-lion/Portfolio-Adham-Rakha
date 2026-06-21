@@ -8,7 +8,7 @@ const GithubIcon = ({ size = 16 }) => (
   </svg>
 );
 
-export default function ProjectCard({ project, lang }) {
+export default function ProjectCard({ project, lang, onClick }) {
   const isRTL = lang === 'ar';
   const [expanded, setExpanded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -62,12 +62,14 @@ export default function ProjectCard({ project, lang }) {
     <div className="card"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      onClick={onClick}
       style={{
         display: 'flex', flexDirection: 'column', overflow: 'hidden',
         direction: isRTL ? 'rtl' : 'ltr',
         transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
         transition: transitionStyle,
         transformStyle: 'preserve-3d',
+        cursor: 'pointer',
       }}
     >
       {/* Card banner */}
@@ -108,6 +110,7 @@ export default function ProjectCard({ project, lang }) {
               backdropFilter: 'blur(4px)',
               color: 'var(--text)', textDecoration: 'none', transition: 'var(--tr)',
             }}
+              onClick={e => e.stopPropagation()}
               onMouseEnter={e => { e.currentTarget.style.background = 'var(--gold-glow)'; e.currentTarget.style.borderColor = 'var(--gold)'; e.currentTarget.style.color = 'var(--gold)'; }}
               onMouseLeave={e => { e.currentTarget.style.background = 'rgba(7,7,26,0.6)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)'; e.currentTarget.style.color = 'var(--text)'; }}
             >
@@ -122,6 +125,7 @@ export default function ProjectCard({ project, lang }) {
               backdropFilter: 'blur(4px)',
               color: 'var(--text)', textDecoration: 'none', transition: 'var(--tr)',
             }}
+              onClick={e => e.stopPropagation()}
               onMouseEnter={e => { e.currentTarget.style.background = 'var(--gold-glow)'; e.currentTarget.style.borderColor = 'var(--gold)'; e.currentTarget.style.color = 'var(--gold)'; }}
               onMouseLeave={e => { e.currentTarget.style.background = 'rgba(7,7,26,0.6)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)'; e.currentTarget.style.color = 'var(--text)'; }}
             >

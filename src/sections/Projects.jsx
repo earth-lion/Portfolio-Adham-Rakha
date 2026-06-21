@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import ProjectCard from '../components/ProjectCard';
+import ProjectModal from '../components/ProjectModal';
 import bistroBlissImg from '../assets/My Work/Bistro Bliss.png';
 
 function useInView(t = 0.1) {
@@ -87,6 +88,7 @@ const FILTERS = {
 export default function Projects({ lang }) {
   const isRTL = lang === 'ar';
   const [filter, setFilter] = useState('all');
+  const [activeProject, setActiveProject] = useState(null);
   const [ref, visible] = useInView();
   const filtered = filter === 'all' ? PROJECTS : PROJECTS.filter(p => p.category === filter);
 
@@ -126,11 +128,20 @@ export default function Projects({ lang }) {
         <div style={{ direction: isRTL ? 'rtl' : 'ltr' }} className="grid-3">
           {filtered.map((p, i) => (
             <div key={p.id} className={`reveal${visible ? ' visible' : ''} d${(i % 4) + 1}`}>
-              <ProjectCard project={p} lang={lang} />
+              <ProjectCard project={p} lang={lang} onClick={() => setActiveProject(p)} />
             </div>
           ))}
         </div>
       </div>
+
+      {/* Project Details Modal */}
+      {activeProject && (
+        <ProjectModal 
+          project={activeProject} 
+          onClose={() => setActiveProject(null)} 
+          lang={lang} 
+        />
+      )}
     </section>
   );
 }
