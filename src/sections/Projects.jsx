@@ -2,6 +2,7 @@ import { useRef, useEffect, useState } from 'react';
 import ProjectCard from '../components/ProjectCard';
 import ProjectModal from '../components/ProjectModal';
 import bistroBlissImg from '../assets/My Work/Bistro Bliss.png';
+import loginImg from '../assets/My Work/LOGIN.png';
 
 function useInView(t = 0.1) {
   const ref = useRef(null);
@@ -77,6 +78,19 @@ const PROJECTS = [
     },
     tags: ['Next.js', 'TypeScript', 'Prisma', 'PostgreSQL', 'Vercel'],
     github: '#', link: '#', category: 'frontend',
+  },
+  {
+    id: 7,
+    title: { en: 'Modern Login & Registration Portal', ar: 'بوابة تسجيل دخول وإنشاء حساب' },
+    desc: {
+      en: 'A beautiful, fully responsive login and registration interface featuring a clean modern layout, smooth interactive transitions, and form validations.',
+      ar: 'واجهة تسجيل دخول وإنشاء حساب جميلة ومتجاوبة بالكامل تتميز بتخطيط عصري، انتقالات تفاعلية سلسة، والتحقق من صحة المدخلات.',
+    },
+    tags: ['HTML5', 'CSS3', 'JavaScript', 'Responsive Design', 'Form Validation'],
+    github: 'https://github.com/earth-lion/login',
+    link: 'https://earth-lion.github.io/login/',
+    category: 'frontend',
+    image: loginImg,
   },
 ];
 
