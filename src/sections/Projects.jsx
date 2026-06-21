@@ -17,6 +17,7 @@ function useInView(t = 0.1) {
 }
 
 const PROJECTS = [
+  // ── Full-Stack ───────────────────────────────────────────────
   {
     id: 1,
     title: { en: 'Bistro Bliss — Restaurant Portal', ar: 'Bistro Bliss — بوابة المطعم' },
@@ -38,53 +39,38 @@ const PROJECTS = [
       ar: 'لوحة تحكم جامعية لجدولة المقررات، محرك امتحانات، رسوم بيانية للدرجات، وقنوات تواصل فوري مع المعلمين.',
     },
     tags: ['React', 'Node.js', 'Express', 'MongoDB', 'ChartJS', 'WebSockets'],
-    github: '#', link: '#', category: 'fullstack',
+    github: '#',
+    link: '#',
+    category: 'fullstack',
   },
   {
     id: 3,
-    title: { en: 'Server Monitor Dashboard', ar: 'لوحة تحليلات الخوادم' },
-    desc: {
-      en: 'Real-time monitoring console reporting active connections, system latency, and memory usage over live WebSocket streams.',
-      ar: 'لوحة مراقبة فورية لمتابعة الاتصالات النشطة، تأخير النظام، واستهلاك الذاكرة عبر WebSocket.',
-    },
-    tags: ['React', 'Node.js', 'WebSockets', 'ChartJS', 'Express'],
-    github: '#', link: '#', category: 'frontend',
-  },
-  {
-    id: 4,
     title: { en: 'E-Commerce Platform', ar: 'منصة تجارة إلكترونية' },
     desc: {
       en: 'Complete shopping platform with product catalog, cart management, secure payment gateway, and order tracking system.',
       ar: 'منصة تسوق متكاملة مع كتالوج المنتجات، إدارة السلة، بوابة دفع آمنة، ونظام تتبع الطلبات.',
     },
     tags: ['React', 'Laravel', 'MySQL', 'Stripe', 'Redis'],
-    github: '#', link: '#', category: 'fullstack',
+    github: '#',
+    link: '#',
+    category: 'fullstack',
   },
+  // ── Frontend ─────────────────────────────────────────────────
   {
-    id: 5,
-    title: { en: 'Task Management App', ar: 'تطبيق إدارة المهام' },
-    desc: {
-      en: 'Kanban-style productivity application with drag-and-drop boards, team collaboration features, and progress analytics.',
-      ar: 'تطبيق إنتاجية بنظام Kanban مع لوحات قابلة للسحب والإفلات، ميزات التعاون الجماعي، وتحليلات التقدم.',
-    },
-    tags: ['React', 'Node.js', 'PostgreSQL', 'Socket.io', 'Redux'],
-    github: '#', link: '#', category: 'fullstack',
-  },
-  {
-    id: 6,
+    id: 4,
     title: { en: 'Interactive Luxury Portfolio', ar: 'معرض أعمال تفاعلي راقٍ' },
     desc: {
       en: 'A high-end developer portfolio featuring glassmorphic UI, custom particles backdrop, 3D tilt interaction, smooth page navigation, and full bi-lingual support.',
       ar: 'موقع معرض أعمال مطور برمجيات فاخر يتميز بتصميم زجاجي، خلفية جزيئات تفاعلية، كروت ثلاثية الأبعاد تفاعلية، وتوافق كامل باللغتين العربية والإنجليزية.',
     },
-    tags: ['React', 'Vite', 'CSS Modules', 'tsParticles', 'Lucide Icons'],
+    tags: ['React', 'Vite', 'Vanilla CSS', 'tsParticles', 'Lucide Icons'],
     github: 'https://github.com/earth-lion/Portfolio-Adham-Rakha',
     link: 'https://earth-lion.github.io/Portfolio-Adham-Rakha/',
     category: 'frontend',
     image: portfolioImg,
   },
   {
-    id: 7,
+    id: 5,
     title: { en: 'Modern Login & Registration Portal', ar: 'بوابة تسجيل دخول وإنشاء حساب' },
     desc: {
       en: 'A beautiful, fully responsive login and registration interface featuring a clean modern layout, smooth interactive transitions, and form validations.',
@@ -95,6 +81,18 @@ const PROJECTS = [
     link: 'https://earth-lion.github.io/login/',
     category: 'frontend',
     image: loginImg,
+  },
+  {
+    id: 6,
+    title: { en: 'Task Management App', ar: 'تطبيق إدارة المهام' },
+    desc: {
+      en: 'Kanban-style productivity application with drag-and-drop boards, team collaboration features, and real-time progress analytics.',
+      ar: 'تطبيق إنتاجية بنظام Kanban مع لوحات قابلة للسحب والإفلات، ميزات التعاون الجماعي، وتحليلات التقدم الفوري.',
+    },
+    tags: ['React', 'Node.js', 'PostgreSQL', 'Socket.io', 'Redux'],
+    github: '#',
+    link: '#',
+    category: 'frontend',
   },
 ];
 
@@ -154,10 +152,10 @@ export default function Projects({ lang }) {
 
       {/* Project Details Modal */}
       {activeProject && (
-        <ProjectModal 
-          project={activeProject} 
-          onClose={() => setActiveProject(null)} 
-          lang={lang} 
+        <ProjectModal
+          project={activeProject}
+          onClose={() => setActiveProject(null)}
+          lang={lang}
         />
       )}
     </section>
