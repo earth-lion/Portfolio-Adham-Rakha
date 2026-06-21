@@ -113,6 +113,10 @@ body::before {
   box-shadow:0 20px 60px rgba(0,0,0,0.4);
   transform:translateY(-4px);
 }
+.card:hover .project-card-image {
+  transform: scale(1.06) !important;
+}
+
 
 /* Tags */
 .tag {

@@ -72,47 +72,58 @@ export default function ProjectCard({ project, lang }) {
     >
       {/* Card banner */}
       <div style={{
-        height: '160px', background: grad, position: 'relative',
+        height: '160px', background: project.image ? 'none' : grad, position: 'relative',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         overflow: 'hidden',
         transform: 'translateZ(25px)',
       }}>
-        <div style={{
-          position: 'absolute', inset: 0,
-          background: 'radial-gradient(ellipse at center, rgba(200,168,75,0.12) 0%, transparent 70%)',
-        }} />
-        <div style={{
-          fontFamily: 'var(--font-en)', fontSize: '52px', fontWeight: 900, opacity: 0.08,
-          color: 'var(--gold)', letterSpacing: '-2px', userSelect: 'none',
-        }}>
-          {project.id.toString().padStart(2, '0')}
-        </div>
+        {project.image ? (
+          <img src={project.image} alt={project.title[lang]} style={{
+            position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover',
+            transition: 'transform 0.5s ease',
+          }} className="project-card-image" />
+        ) : (
+          <>
+            <div style={{
+              position: 'absolute', inset: 0,
+              background: 'radial-gradient(ellipse at center, rgba(200,168,75,0.12) 0%, transparent 70%)',
+            }} />
+            <div style={{
+              fontFamily: 'var(--font-en)', fontSize: '52px', fontWeight: 900, opacity: 0.08,
+              color: 'var(--gold)', letterSpacing: '-2px', userSelect: 'none',
+            }}>
+              {project.id.toString().padStart(2, '0')}
+            </div>
+          </>
+        )}
         <div style={{
           position: 'absolute', top: '16px', right: isRTL ? 'auto' : '16px', left: isRTL ? '16px' : 'auto',
-          display: 'flex', gap: '8px',
+          display: 'flex', gap: '8px', zIndex: 10,
         }}>
           {project.github && (
             <a href={project.github} target="_blank" rel="noreferrer" style={{
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               width: '34px', height: '34px', borderRadius: '8px',
-              background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.12)',
+              background: 'rgba(7,7,26,0.6)', border: '1px solid rgba(255,255,255,0.12)',
+              backdropFilter: 'blur(4px)',
               color: 'var(--text)', textDecoration: 'none', transition: 'var(--tr)',
             }}
               onMouseEnter={e => { e.currentTarget.style.background = 'var(--gold-glow)'; e.currentTarget.style.borderColor = 'var(--gold)'; e.currentTarget.style.color = 'var(--gold)'; }}
-              onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.08)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)'; e.currentTarget.style.color = 'var(--text)'; }}
+              onMouseLeave={e => { e.currentTarget.style.background = 'rgba(7,7,26,0.6)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)'; e.currentTarget.style.color = 'var(--text)'; }}
             >
               <GithubIcon size={15} />
             </a>
           )}
-          {project.link && (
+          {project.link && project.link !== '#' && (
             <a href={project.link} target="_blank" rel="noreferrer" style={{
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               width: '34px', height: '34px', borderRadius: '8px',
-              background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.12)',
+              background: 'rgba(7,7,26,0.6)', border: '1px solid rgba(255,255,255,0.12)',
+              backdropFilter: 'blur(4px)',
               color: 'var(--text)', textDecoration: 'none', transition: 'var(--tr)',
             }}
               onMouseEnter={e => { e.currentTarget.style.background = 'var(--gold-glow)'; e.currentTarget.style.borderColor = 'var(--gold)'; e.currentTarget.style.color = 'var(--gold)'; }}
-              onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.08)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)'; e.currentTarget.style.color = 'var(--text)'; }}
+              onMouseLeave={e => { e.currentTarget.style.background = 'rgba(7,7,26,0.6)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)'; e.currentTarget.style.color = 'var(--text)'; }}
             >
               <ExternalLink size={15} />
             </a>

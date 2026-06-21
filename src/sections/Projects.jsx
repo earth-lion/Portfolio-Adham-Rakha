@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import ProjectCard from '../components/ProjectCard';
+import bistroBlissImg from '../assets/My Work/Bistro Bliss.png';
 
 function useInView(t = 0.1) {
   const ref = useRef(null);
@@ -21,7 +22,10 @@ const PROJECTS = [
       ar: 'منصة إدارة مطاعم متكاملة مع تتبع الطلبات الفوري، شات بوت ذكي، دفع إلكتروني، دعم اللغتين، ولوحة تحكم للمدير.',
     },
     tags: ['React', 'Laravel', 'MySQL', 'Stripe', 'TailwindCSS', 'AI Chatbot'],
-    github: '#', link: '#', category: 'fullstack',
+    github: 'https://github.com/earth-lion/Bistro-Bliss',
+    link: '#',
+    category: 'fullstack',
+    image: bistroBlissImg,
   },
   {
     id: 2,
