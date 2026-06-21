@@ -3,6 +3,7 @@ import ProjectCard from '../components/ProjectCard';
 import ProjectModal from '../components/ProjectModal';
 import bistroBlissImg from '../assets/My Work/Bistro Bliss.png';
 import loginImg from '../assets/My Work/LOGIN.png';
+import portfolioImg from '../assets/My Work/portfolio.png';
 
 function useInView(t = 0.1) {
   const ref = useRef(null);
@@ -71,13 +72,16 @@ const PROJECTS = [
   },
   {
     id: 6,
-    title: { en: 'Portfolio Builder SaaS', ar: 'منشئ البورتفوليو' },
+    title: { en: 'Interactive Luxury Portfolio', ar: 'معرض أعمال تفاعلي راقٍ' },
     desc: {
-      en: 'SaaS platform that lets developers create and publish professional portfolios with custom domains and analytics.',
-      ar: 'منصة SaaS تتيح للمطورين إنشاء ونشر بورتفوليوهات احترافية بنطاقات مخصصة وتحليلات.',
+      en: 'A high-end developer portfolio featuring glassmorphic UI, custom particles backdrop, 3D tilt interaction, smooth page navigation, and full bi-lingual support.',
+      ar: 'موقع معرض أعمال مطور برمجيات فاخر يتميز بتصميم زجاجي، خلفية جزيئات تفاعلية، كروت ثلاثية الأبعاد تفاعلية، وتوافق كامل باللغتين العربية والإنجليزية.',
     },
-    tags: ['Next.js', 'TypeScript', 'Prisma', 'PostgreSQL', 'Vercel'],
-    github: '#', link: '#', category: 'frontend',
+    tags: ['React', 'Vite', 'CSS Modules', 'tsParticles', 'Lucide Icons'],
+    github: 'https://github.com/earth-lion/Portfolio-Adham-Rakha',
+    link: 'https://earth-lion.github.io/Portfolio-Adham-Rakha/',
+    category: 'frontend',
+    image: portfolioImg,
   },
   {
     id: 7,
