@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Globe, Menu, X, Download } from 'lucide-react';
-import logoImg from '../assets/logo.png';
+import logoImg from '../assets/logo.webp';
 import cvFile from '../assets/CV Adham Rakha .pdf';
 
 export default function Navbar({ lang, setLang }) {
@@ -60,6 +60,54 @@ export default function Navbar({ lang, setLang }) {
     transition: 'color 0.2s ease', fontFamily: isRTL ? 'var(--font-ar)' : 'inherit',
   };
 
+  // Logo component — reused in both desktop + mobile
+  const LogoSeal = ({ size = 85 }) => (
+    <a href="#hero" onClick={e => go(e, 'hero')} style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', flexShrink: 0 }}>
+      <div style={{ position: 'relative', width: `${size}px`, height: `${size}px`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+        <svg viewBox="0 0 100 100" style={{ width: '100%', height: '100%', overflow: 'visible' }}>
+          <defs>
+            <path id="logo-top-path" d="M 12,50 A 38,38 0 0,1 88,50" fill="none" />
+            <path id="logo-bottom-path" d="M 12,50 A 38,38 0 0,0 88,50" fill="none" />
+          </defs>
+          <circle cx="50" cy="50" r="44" fill="none" stroke="var(--gold-border)" strokeWidth="0.75" strokeDasharray="2 3" />
+          <circle cx="50" cy="50" r="26" fill="none" stroke="var(--gold-border)" strokeWidth="0.5" />
+          <text fontSize="5.5px" fontWeight="700" letterSpacing="0.8px" fontFamily="var(--font-en)" fill="var(--gold-light)">
+            <textPath href="#logo-top-path" startOffset="50%" textAnchor="middle" dy="-3">
+              CREATIVE POWER IN EVERY DESIGN
+            </textPath>
+          </text>
+          <text fontSize="7px" fontWeight="900" letterSpacing="0.8px" fontFamily="var(--font-en)" fill="var(--gold)">
+            <textPath href="#logo-bottom-path" startOffset="50%" textAnchor="middle" dy="11">
+              EARTH LION
+            </textPath>
+          </text>
+        </svg>
+        <div style={{
+          position: 'absolute',
+          width: `${size * 0.56}px`,
+          height: `${size * 0.56}px`,
+          borderRadius: '50%',
+          overflow: 'hidden',
+          border: '1.5px solid var(--gold)',
+          background: '#07071a',
+          boxShadow: '0 0 15px rgba(184,150,62,0.3)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+        }}>
+          <img src={logoImg} alt="Earth Lion" loading="eager" style={{ width: '140%', height: '140%', objectFit: 'cover' }} />
+        </div>
+      </div>
+      <span className="nav-logo-title" style={{
+        fontFamily: isRTL ? 'var(--font-ar)' : 'var(--font-en)',
+        fontWeight: 800, fontSize: '22px',
+        background: 'linear-gradient(135deg, var(--gold-light), var(--gold))',
+        WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+        letterSpacing: '0.5px',
+      }}>
+        Earth Lion
+      </span>
+    </a>
+  );
+
   return (
     <>
       <header style={navStyle}>
@@ -70,69 +118,12 @@ export default function Navbar({ lang, setLang }) {
           transition: 'width 0.1s linear',
         }} />
 
-        <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', direction: isRTL ? 'rtl' : 'ltr', maxWidth: '1340px' }}>
-          {/* Premium Logo Seal & Title */}
-          <a href="#hero" onClick={e => go(e, 'hero')} style={{ display: 'flex', alignItems: 'center', gap: '16px', textDecoration: 'none' }}>
-            <div className="nav-logo-seal" style={{ position: 'relative', width: '85px', height: '85px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-              <svg viewBox="0 0 100 100" style={{ width: '100%', height: '100%', overflow: 'visible' }}>
-                <defs>
-                  {/* Top arc (clockwise, left to right) */}
-                  <path id="logo-top-path" d="M 12,50 A 38,38 0 0,1 88,50" fill="none" />
-                  {/* Bottom arc (counter-clockwise, left to right along the bottom to keep text right-side-up) */}
-                  <path id="logo-bottom-path" d="M 12,50 A 38,38 0 0,0 88,50" fill="none" />
-                </defs>
-
-                {/* Decorative outer rings */}
-                <circle cx="50" cy="50" r="44" fill="none" stroke="var(--gold-border)" strokeWidth="0.75" strokeDasharray="2 3" />
-                <circle cx="50" cy="50" r="26" fill="none" stroke="var(--gold-border)" strokeWidth="0.5" />
-
-                {/* Curved Text Top */}
-                <text fontSize="5.5px" fontWeight="700" letterSpacing="0.8px" fontFamily="var(--font-en)" fill="var(--gold-light)">
-                  <textPath href="#logo-top-path" startOffset="50%" textAnchor="middle" dy="-3">
-                    CREATIVE POWER IN EVERY DESIGN
-                  </textPath>
-                </text>
-
-                {/* Curved Text Bottom */}
-                <text fontSize="7px" fontWeight="900" letterSpacing="0.8px" fontFamily="var(--font-en)" fill="var(--gold)">
-                  <textPath href="#logo-bottom-path" startOffset="50%" textAnchor="middle" dy="11">
-                    EARTH LION
-                  </textPath>
-                </text>
-              </svg>
-              
-              {/* Lion image in center — zoomed to 140% to focus on the gold lion head */}
-              <div style={{
-                position: 'absolute',
-                width: '48px',
-                height: '48px',
-                borderRadius: '50%',
-                overflow: 'hidden',
-                border: '1.5px solid var(--gold)',
-                background: '#07071a',
-                boxShadow: '0 0 15px rgba(184,150,62,0.3)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-                <img src={logoImg} alt="Earth Lion" style={{ width: '140%', height: '140%', objectFit: 'cover' }} />
-              </div>
-            </div>
-            
-            {/* Brand Title */}
-            <span className="nav-logo-title" style={{
-              fontFamily: isRTL ? 'var(--font-ar)' : 'var(--font-en)',
-              fontWeight: 800, fontSize: '22px',
-              background: 'linear-gradient(135deg, var(--gold-light), var(--gold))',
-              WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
-              letterSpacing: '0.5px',
-            }}>
-              Earth Lion
-            </span>
-          </a>
+        {/* ── DESKTOP layout (> 768px) ── */}
+        <div className="nav-desktop container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', direction: isRTL ? 'rtl' : 'ltr', maxWidth: '1340px' }}>
+          <LogoSeal size={85} />
 
           {/* Desktop links */}
-          <nav style={{ display: 'flex', alignItems: 'center', gap: '36px' }} className="desk-nav">
+          <nav style={{ display: 'flex', alignItems: 'center', gap: '36px' }}>
             {links[lang].map(({ l, id }) => (
               <a key={id} href={`#${id}`} onClick={e => go(e, id)} style={linkBase}
                 onMouseEnter={e => e.target.style.color = 'var(--gold)'}
@@ -156,28 +147,49 @@ export default function Navbar({ lang, setLang }) {
               <span>{lang === 'en' ? 'عربي' : 'EN'}</span>
             </button>
 
-            <a href={cvFile} download className="btn btn-gold" style={{ padding: '9px 18px', fontSize: '13px' }} >
+            <a href={cvFile} download className="btn btn-gold" style={{ padding: '9px 18px', fontSize: '13px' }}>
               <Download size={14} />
               <span className="nav-resume-label">{lang === 'en' ? 'Resume' : 'السيرة الذاتية'}</span>
             </a>
-
-            {/* Mobile toggle */}
-            <button onClick={() => setOpen(!open)} className="mob-btn" style={{
-              display: 'none', background: 'transparent', border: 'none',
-              color: 'var(--text)', cursor: 'pointer', padding: '4px',
-            }}>
-              {open ? <X size={24} /> : <Menu size={24} />}
-            </button>
           </div>
+        </div>
+
+        {/* ── MOBILE layout (≤ 768px) — 3 columns: Logo | Lang | Menu ── */}
+        <div className="nav-mobile container" style={{ display: 'none', alignItems: 'center', justifyContent: 'space-between', direction: isRTL ? 'rtl' : 'ltr' }}>
+          {/* Col 1 — Logo (left) */}
+          <LogoSeal size={52} />
+
+          {/* Col 2 — Language toggle (center) */}
+          <button onClick={() => setLang(lang === 'en' ? 'ar' : 'en')} style={{
+            background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)',
+            color: 'var(--text)', padding: '7px 14px', borderRadius: '20px',
+            cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px',
+            fontSize: '13px', fontWeight: 600, transition: 'var(--tr)',
+          }}
+            onMouseEnter={e => e.currentTarget.style.borderColor = 'var(--gold)'}
+            onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'}
+          >
+            <Globe size={14} />
+            <span>{lang === 'en' ? 'عربي' : 'EN'}</span>
+          </button>
+
+          {/* Col 3 — Hamburger (right) */}
+          <button onClick={() => setOpen(!open)} style={{
+            background: 'transparent', border: 'none',
+            color: 'var(--text)', cursor: 'pointer', padding: '4px',
+            display: 'flex', alignItems: 'center',
+          }}>
+            {open ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
 
         {/* Responsive CSS */}
         <style>{`
-          .desk-nav { display:flex !important; }
-          .mob-btn { display:none !important; }
+          .nav-desktop { display:flex !important; }
+          .nav-mobile  { display:none !important; }
           @media (max-width:768px) {
-            .desk-nav { display:none !important; }
-            .mob-btn { display:flex !important; }
+            .nav-desktop { display:none !important; }
+            .nav-mobile  { display:flex !important; }
           }
         `}</style>
       </header>
@@ -204,6 +216,15 @@ export default function Navbar({ lang, setLang }) {
               onMouseLeave={e => e.target.style.color = 'var(--text-2)'}
             >{l}</a>
           ))}
+
+          {/* Resume button inside drawer */}
+          <a href={cvFile} download className="btn btn-gold" style={{
+            marginTop: '12px', justifyContent: 'center', fontSize: '15px', padding: '12px',
+            fontFamily: isRTL ? 'var(--font-ar)' : 'inherit',
+          }}>
+            <Download size={16} />
+            {lang === 'en' ? 'Download Resume' : 'تحميل السيرة الذاتية'}
+          </a>
         </div>
       )}
     </>

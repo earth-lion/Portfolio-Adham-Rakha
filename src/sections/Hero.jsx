@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Download, Mail, ArrowDown } from 'lucide-react';
-import profileImg from '../assets/hero.png';
+import profileImg from '../assets/hero.webp';
 import cvFile from '../assets/CV Adham Rakha .pdf';
 
 const GH = () => (
@@ -218,7 +218,7 @@ export default function Hero({ lang }) {
                 boxShadow: '0 0 40px rgba(184,150,62,0.2), 0 20px 60px rgba(0,0,0,0.5)',
                 transform: 'translateZ(30px)',
               }}>
-                <img src={profileImg} alt="Adham Rakha" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <img src={profileImg} alt="Adham Rakha" fetchpriority="high" loading="eager" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
             </div>
           </div>

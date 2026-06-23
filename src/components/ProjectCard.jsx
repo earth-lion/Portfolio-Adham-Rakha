@@ -80,7 +80,7 @@ export default function ProjectCard({ project, lang, onClick }) {
         transform: 'translateZ(25px)',
       }}>
         {project.image ? (
-          <img src={project.image} alt={project.title[lang]} style={{
+          <img src={project.image} alt={project.title[lang]} loading="lazy" decoding="async" style={{
             position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover',
             transition: 'transform 0.5s ease',
           }} className="project-card-image" />

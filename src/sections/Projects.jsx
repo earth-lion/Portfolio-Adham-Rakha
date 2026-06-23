@@ -1,9 +1,9 @@
 import { useRef, useEffect, useState } from 'react';
 import ProjectCard from '../components/ProjectCard';
 import ProjectModal from '../components/ProjectModal';
-import bistroBlissImg from '../assets/My Work/Bistro Bliss.png';
-import loginImg from '../assets/My Work/LOGIN.png';
-import portfolioImg from '../assets/My Work/portfolio.png';
+import bistroBlissImg from '../assets/My Work/bistro-bliss.webp';
+import loginImg from '../assets/My Work/login.webp';
+import portfolioImg from '../assets/My Work/portfolio.webp';
 
 function useInView(t = 0.1) {
   const ref = useRef(null);
