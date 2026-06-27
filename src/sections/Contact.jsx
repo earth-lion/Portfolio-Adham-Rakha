@@ -87,74 +87,65 @@ export default function Contact({ lang }) {
           </p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '0.85fr 1.15fr', gap: '40px', alignItems: 'start', direction: isRTL ? 'rtl' : 'ltr' }} className="grid-2">
+        <div style={{ gap: '40px', alignItems: 'start', direction: isRTL ? 'rtl' : 'ltr' }} className="grid-2 contact-grid">
           {/* Left: Info cards */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }} className={`reveal${visible ? ' visible' : ''} d1`}>
-            <div style={{ padding: '28px', borderRadius: '16px', background: 'var(--surface)', border: '1px solid var(--border)', marginBottom: '8px' }}>
-              <h3 style={{ fontSize: '20px', fontWeight: 700, marginBottom: '10px', fontFamily: isRTL ? 'var(--font-ar)' : 'var(--font-en)' }}>
-                {lang === 'en' ? 'Contact Info' : 'معلومات التواصل'}
-              </h3>
-              <p style={{ fontSize: '14px', color: 'var(--text-2)', lineHeight: 1.7, fontFamily: isRTL ? 'var(--font-ar)' : 'inherit' }}>
-                {lang === 'en'
-                  ? "Open to freelance projects, full-time roles, and interesting collaborations."
-                  : 'متاح للمشاريع المستقلة والوظائف والتعاونات المثيرة.'}
-              </p>
+          <div className={`reveal${visible ? ' visible' : ''} d1`}>
+            <div style={{
+              padding: '28px', borderRadius: '16px',
+              background: 'var(--surface)', border: '1px solid var(--border)',
+              display: 'flex', flexDirection: 'column', gap: '24px'
+            }}>
+              <div>
+                <h3 style={{ fontSize: '20px', fontWeight: 700, marginBottom: '10px', fontFamily: isRTL ? 'var(--font-ar)' : 'var(--font-en)' }}>
+                  {lang === 'en' ? 'Contact Info' : 'معلومات التواصل'}
+                </h3>
+                <p style={{ fontSize: '14px', color: 'var(--text-2)', lineHeight: 1.7, fontFamily: isRTL ? 'var(--font-ar)' : 'inherit' }}>
+                  {lang === 'en'
+                    ? "Open to freelance projects, full-time roles, and interesting collaborations."
+                    : 'متاح للمشاريع المستقلة والوظائف والتعاونات المثيرة.'}
+                </p>
+              </div>
+
+              {/* Horizontal divider */}
+              <div style={{ height: '1px', background: 'var(--border)' }} />
+
+              {/* Icons Row */}
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
+                {INFO[lang].map(({ icon, label, href }) => {
+                  const Wrapper = href ? 'a' : 'div';
+                  const wrapperProps = href
+                    ? { href, target: '_blank', rel: 'noreferrer', title: label }
+                    : { title: label };
+                  return (
+                    <Wrapper key={label} {...wrapperProps}
+                      style={{
+                        width: '48px', height: '48px', borderRadius: '12px',
+                        background: 'var(--surface-2)', border: '1px solid var(--border)',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        color: 'var(--text-2)', cursor: href ? 'pointer' : 'default',
+                        transition: 'var(--tr)',
+                      }}
+                      onMouseEnter={e => {
+                        if (!href) return;
+                        e.currentTarget.style.borderColor = 'var(--gold)';
+                        e.currentTarget.style.color = 'var(--gold)';
+                        e.currentTarget.style.background = 'var(--gold-glow)';
+                        e.currentTarget.style.transform = 'translateY(-3px)';
+                      }}
+                      onMouseLeave={e => {
+                        if (!href) return;
+                        e.currentTarget.style.borderColor = 'var(--border)';
+                        e.currentTarget.style.color = 'var(--text-2)';
+                        e.currentTarget.style.background = 'var(--surface-2)';
+                        e.currentTarget.style.transform = 'translateY(0)';
+                      }}
+                    >
+                      {icon}
+                    </Wrapper>
+                  );
+                })}
+              </div>
             </div>
-
-            {INFO[lang].map(({ icon, label, href }) => {
-              const Wrapper = href ? 'a' : 'div';
-              const wrapperProps = href
-                ? { href, target: '_blank', rel: 'noreferrer', style: { textDecoration: 'none' } }
-                : {};
-              return (
-                <Wrapper key={label} {...wrapperProps}
-                  style={{
-                    display: 'flex', alignItems: 'center', gap: '16px',
-                    padding: '16px 20px', borderRadius: '14px',
-                    background: 'var(--surface)', border: '1px solid var(--border)',
-                    transition: 'var(--tr)', cursor: href ? 'pointer' : 'default',
-                    textDecoration: 'none',
-                    ...(href ? {} : {}),
-                  }}
-                  onMouseEnter={e => {
-                    if (!href) return;
-                    e.currentTarget.style.borderColor = 'var(--gold-border)';
-                    e.currentTarget.style.background = 'var(--gold-glow)';
-                    e.currentTarget.style.transform = 'translateX(4px)';
-                  }}
-                  onMouseLeave={e => {
-                    if (!href) return;
-                    e.currentTarget.style.borderColor = 'var(--border)';
-                    e.currentTarget.style.background = 'var(--surface)';
-                    e.currentTarget.style.transform = 'translateX(0)';
-                  }}
-                >
-                  {/* Icon badge */}
-                  <div style={{
-                    width: '42px', height: '42px', borderRadius: '10px', flexShrink: 0,
-                    background: 'var(--gold-glow)', border: '1px solid var(--gold-border)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    color: 'var(--gold)',
-                  }}>{icon}</div>
-
-                  {/* Label only */}
-                  <span style={{
-                    fontSize: '15px', fontWeight: 700,
-                    color: href ? 'var(--text)' : 'var(--text-2)',
-                    fontFamily: isRTL ? 'var(--font-ar)' : 'var(--font-en)',
-                  }}>{label}</span>
-
-                  {/* Chevron arrow for clickable items */}
-                  {href && (
-                    <svg style={{ marginInlineStart: 'auto', color: 'var(--gold)', opacity: 0.6, flexShrink: 0 }}
-                      width="16" height="16" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M9 18l6-6-6-6"/>
-                    </svg>
-                  )}
-                </Wrapper>
-              );
-            })}
           </div>
 
           {/* Right: Form */}

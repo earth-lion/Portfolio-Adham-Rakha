@@ -177,6 +177,7 @@ body::before {
 /* Grid utilities */
 .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:32px; }
 .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+.contact-grid { grid-template-columns: 0.85fr 1.15fr; }
 
 /* Hero specific */
 @keyframes heroFadeUp {
@@ -210,6 +211,7 @@ body::before {
 /* ── Tablet (≤ 900px) ─────────────────────── */
 @media (max-width: 900px) {
   .grid-2 { grid-template-columns: 1fr; gap: 40px; }
+  .contact-grid { grid-template-columns: 1fr !important; }
   .grid-3 { grid-template-columns: 1fr 1fr; gap: 20px; }
   .section { padding: 72px 0; }
 
@@ -297,9 +299,6 @@ body::before {
 
   /* Contact form grid: single column */
   .contact-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
-
-  /* Skills grid: 2 cols */
-  .skills-grid { grid-template-columns: 1fr 1fr !important; }
 }
 
 /* ── Small Mobile (≤ 480px) ─────────────── */
@@ -322,7 +321,6 @@ body::before {
   .grid-3 { gap: 14px; }
 
   /* Skills: single column */
-  .skills-grid { grid-template-columns: 1fr !important; }
 
   /* Tags: wrap tightly */
   .tag { font-size: 10px !important; }

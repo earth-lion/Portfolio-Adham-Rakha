@@ -90,7 +90,7 @@ export default function Skills({ lang }) {
           </p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: '28px', direction: isRTL ? 'rtl' : 'ltr' }} className="grid-2">
+        <div style={{ gap: '28px', direction: isRTL ? 'rtl' : 'ltr' }} className="grid-2">
           {SKILLS.map((group, gi) => (
             <div key={gi} className={`card reveal${visible ? ' visible' : ''} d${gi + 1}`} style={{ padding: '28px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
               {/* Category header */}

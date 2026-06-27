@@ -52,6 +52,8 @@ export default function Navbar({ lang, setLang }) {
     WebkitBackdropFilter: scrolled ? 'blur(18px)' : 'none',
     borderBottom: scrolled ? '1px solid rgba(255,255,255,0.06)' : '1px solid transparent',
     transition: 'all 0.35s cubic-bezier(0.16,1,0.3,1)',
+    overflow: 'hidden',
+    maxWidth: '100vw',
   };
 
   const linkBase = {
@@ -61,9 +63,9 @@ export default function Navbar({ lang, setLang }) {
   };
 
   // Logo component — reused in both desktop + mobile
-  const LogoSeal = ({ size = 85 }) => (
-    <a href="#hero" onClick={e => go(e, 'hero')} style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', flexShrink: 0 }}>
-      <div style={{ position: 'relative', width: `${size}px`, height: `${size}px`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+  const LogoSeal = ({ size = 85, hideText = false }) => (
+    <a href="#hero" onClick={e => go(e, 'hero')} style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', flexShrink: 0, minWidth: 0 }}>
+      <div style={{ position: 'relative', width: `${size}px`, height: `${size}px`, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <svg viewBox="0 0 100 100" style={{ width: '100%', height: '100%', overflow: 'visible' }}>
           <defs>
             <path id="logo-top-path" d="M 12,50 A 38,38 0 0,1 88,50" fill="none" />
@@ -96,15 +98,18 @@ export default function Navbar({ lang, setLang }) {
           <img src={logoImg} alt="Earth Lion" loading="eager" style={{ width: '140%', height: '140%', objectFit: 'cover' }} />
         </div>
       </div>
-      <span className="nav-logo-title" style={{
-        fontFamily: isRTL ? 'var(--font-ar)' : 'var(--font-en)',
-        fontWeight: 800, fontSize: '22px',
-        background: 'linear-gradient(135deg, var(--gold-light), var(--gold))',
-        WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
-        letterSpacing: '0.5px',
-      }}>
-        Earth Lion
-      </span>
+      {!hideText && (
+        <span className="nav-logo-title" style={{
+          fontFamily: isRTL ? 'var(--font-ar)' : 'var(--font-en)',
+          fontWeight: 800, fontSize: '22px',
+          background: 'linear-gradient(135deg, var(--gold-light), var(--gold))',
+          WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+          letterSpacing: '0.5px',
+          whiteSpace: 'nowrap',
+        }}>
+          Earth Lion
+        </span>
+      )}
     </a>
   );
 
@@ -154,33 +159,43 @@ export default function Navbar({ lang, setLang }) {
           </div>
         </div>
 
-        {/* ── MOBILE layout (≤ 768px) — 3 columns: Logo | Lang | Menu ── */}
-        <div className="nav-mobile container" style={{ display: 'none', alignItems: 'center', justifyContent: 'space-between', direction: isRTL ? 'rtl' : 'ltr' }}>
-          {/* Col 1 — Logo (left) */}
-          <LogoSeal size={52} />
+        {/* ── MOBILE layout (≤ 768px) — 3 equal columns: Lang | Logo (center) | Menu ── */}
+        <div className="nav-mobile" style={{
+          display: 'none', alignItems: 'center',
+          direction: isRTL ? 'rtl' : 'ltr',
+          padding: '0 16px', width: '100%', boxSizing: 'border-box',
+        }}>
+          {/* Col 1 — Language toggle (left) */}
+          <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-start' }}>
+            <button onClick={() => setLang(lang === 'en' ? 'ar' : 'en')} style={{
+              background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)',
+              color: 'var(--text)', padding: '6px 12px', borderRadius: '20px',
+              cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px',
+              fontSize: '13px', fontWeight: 600, transition: 'var(--tr)', flexShrink: 0,
+            }}
+              onMouseEnter={e => e.currentTarget.style.borderColor = 'var(--gold)'}
+              onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'}
+            >
+              <Globe size={14} />
+              <span>{lang === 'en' ? 'عربي' : 'EN'}</span>
+            </button>
+          </div>
 
-          {/* Col 2 — Language toggle (center) */}
-          <button onClick={() => setLang(lang === 'en' ? 'ar' : 'en')} style={{
-            background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)',
-            color: 'var(--text)', padding: '7px 14px', borderRadius: '20px',
-            cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px',
-            fontSize: '13px', fontWeight: 600, transition: 'var(--tr)',
-          }}
-            onMouseEnter={e => e.currentTarget.style.borderColor = 'var(--gold)'}
-            onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'}
-          >
-            <Globe size={14} />
-            <span>{lang === 'en' ? 'عربي' : 'EN'}</span>
-          </button>
+          {/* Col 2 — Logo (center, perfectly centered) */}
+          <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
+            <LogoSeal size={58} hideText={true} />
+          </div>
 
           {/* Col 3 — Hamburger (right) */}
-          <button onClick={() => setOpen(!open)} style={{
-            background: 'transparent', border: 'none',
-            color: 'var(--text)', cursor: 'pointer', padding: '4px',
-            display: 'flex', alignItems: 'center',
-          }}>
-            {open ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
+            <button onClick={() => setOpen(!open)} style={{
+              background: 'transparent', border: 'none',
+              color: 'var(--text)', cursor: 'pointer', padding: '4px',
+              display: 'flex', alignItems: 'center', flexShrink: 0,
+            }}>
+              {open ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
 
         {/* Responsive CSS */}
@@ -191,6 +206,7 @@ export default function Navbar({ lang, setLang }) {
             .nav-desktop { display:none !important; }
             .nav-mobile  { display:flex !important; }
           }
+          html, body { overflow-x: hidden; max-width: 100vw; }
         `}</style>
       </header>
 
