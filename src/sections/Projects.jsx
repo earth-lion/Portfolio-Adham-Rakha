@@ -27,7 +27,7 @@ const PROJECTS = [
     },
     tags: ['React', 'Laravel', 'MySQL', 'Stripe', 'TailwindCSS', 'AI Chatbot'],
     github: 'https://github.com/earth-lion/Bistro-Bliss',
-    link: '#',
+    link: 'https://earth-lion.github.io/Bistro-Bliss/',
     category: 'fullstack',
     image: bistroBlissImg,
   },
