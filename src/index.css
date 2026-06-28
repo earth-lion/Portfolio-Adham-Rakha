@@ -325,3 +325,16 @@ body::before {
   /* Tags: wrap tightly */
   .tag { font-size: 10px !important; }
 }
+
+/* Contact responsive helpers */
+.contact-desktop-only { display: flex !important; }
+.contact-mobile-only { display: none !important; }
+
+@media (max-width: 768px) {
+  .contact-desktop-only { display: none !important; }
+  .contact-mobile-only {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+}
+
