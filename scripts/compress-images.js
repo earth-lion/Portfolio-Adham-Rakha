@@ -14,6 +14,11 @@ const tasks = [
     width: 900, quality: 82,
   },
   {
+    input: path.join(assetsDir, 'My Work/smart student portal.png'),
+    output: path.join(assetsDir, 'My Work/smart student portal.webp'),
+    width: 900, quality: 82,
+  },
+  {
     input: path.join(assetsDir, 'My Work/LOGIN.png'),
     output: path.join(assetsDir, 'My Work/login.webp'),
     width: 900, quality: 82,

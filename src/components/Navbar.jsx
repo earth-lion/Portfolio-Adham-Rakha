@@ -1,20 +1,33 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Globe, Menu, X, Download } from 'lucide-react';
 import logoImg from '../assets/logo.webp';
 import cvFile from '../assets/CV Adham Rakha .pdf';
 
 export default function Navbar({ lang, setLang }) {
   const [scrolled, setScrolled] = useState(false);
-  const [pct, setPct] = useState(0);
   const [open, setOpen] = useState(false);
+  const progressBarRef = useRef(null);
 
   useEffect(() => {
     const fn = () => {
-      setScrolled(window.scrollY > 40);
+      // Only set state when the state changes
+      const isScrolled = window.scrollY > 40;
+      setScrolled((prev) => {
+        if (prev !== isScrolled) return isScrolled;
+        return prev;
+      });
+
+      // Update progress bar DOM directly to avoid re-renders
       const h = document.documentElement.scrollHeight - window.innerHeight;
-      setPct(h > 0 ? (window.scrollY / h) * 100 : 0);
+      const pct = h > 0 ? (window.scrollY / h) * 100 : 0;
+      if (progressBarRef.current) {
+        progressBarRef.current.style.width = `${pct}%`;
+      }
     };
-    window.addEventListener('scroll', fn);
+    
+    window.addEventListener('scroll', fn, { passive: true });
+    // Run once initially
+    fn();
     return () => window.removeEventListener('scroll', fn);
   }, []);
 
@@ -117,11 +130,14 @@ export default function Navbar({ lang, setLang }) {
     <>
       <header style={navStyle}>
         {/* Progress bar */}
-        <div style={{
-          position: 'absolute', top: 0, left: 0, height: '2px',
-          width: `${pct}%`, background: 'linear-gradient(90deg, var(--gold-dark), var(--gold-light))',
-          transition: 'width 0.1s linear',
-        }} />
+        <div 
+          ref={progressBarRef}
+          style={{
+            position: 'absolute', top: 0, left: 0, height: '2px',
+            width: '0%', background: 'linear-gradient(90deg, var(--gold-dark), var(--gold-light))',
+            transition: 'width 0.1s linear',
+          }} 
+        />
 
         {/* ── DESKTOP layout (> 768px) ── */}
         <div className="nav-desktop container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', direction: isRTL ? 'rtl' : 'ltr', maxWidth: '1340px' }}>

@@ -155,7 +155,10 @@ export default function ProjectCard({ project, lang, onClick }) {
               </p>
             )}
             <button
-              onClick={() => setExpanded(e => !e)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setExpanded(prev => !prev);
+              }}
               style={{
                 alignSelf: isRTL ? 'flex-end' : 'flex-start',
                 background: 'none', border: 'none', cursor: 'pointer',

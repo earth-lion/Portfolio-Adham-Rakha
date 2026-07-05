@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 /**
  * FluidBackground.jsx
@@ -11,8 +11,19 @@ import { useEffect, useRef } from 'react';
  */
 export default function FluidBackground() {
   const canvasRef = useRef(null);
+  
+  // Detect mobile device or small screen size on mount
+  const [isMobile] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+        || window.innerWidth <= 768;
+    }
+    return false;
+  });
 
   useEffect(() => {
+    if (isMobile) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -484,18 +495,20 @@ export default function FluidBackground() {
 
   return (
     <>
-      <canvas
-        ref={canvasRef}
-        style={{
-          position: 'fixed',
-          inset: 0,
-          width: '100vw',
-          height: '100vh',
-          zIndex: 0,
-          pointerEvents: 'none',
-          display: 'block',
-        }}
-      />
+      {!isMobile && (
+        <canvas
+          ref={canvasRef}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            width: '100vw',
+            height: '100vh',
+            zIndex: 0,
+            pointerEvents: 'none',
+            display: 'block',
+          }}
+        />
+      )}
       {/* Vignette effect layer */}
       <div
         aria-hidden="true"
