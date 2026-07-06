@@ -5,6 +5,7 @@ import bistroBlissImg from "../assets/My Work/bistro-bliss.webp";
 import loginImg from "../assets/My Work/login.webp";
 import portfolioImg from "../assets/My Work/portfolio.webp";
 import smartStudentPortalImg from "../assets/My Work/smart student portal.webp";
+import apexFlowImg from "../assets/My Work/apex-flow.png";
 
 function useInView(t = 0.1) {
   const ref = useRef(null);
@@ -55,15 +56,16 @@ const PROJECTS = [
   },
   {
     id: 3,
-    title: { en: "E-Commerce Platform", ar: "منصة تجارة إلكترونية" },
+    title: { en: "ApexFlow — Enterprise ERP", ar: "ApexFlow — نظام ERP للمؤسسات" },
     desc: {
-      en: "Complete shopping platform with product catalog, cart management, secure payment gateway, and order tracking system.",
-      ar: "منصة تسوق متكاملة مع كتالوج المنتجات، إدارة السلة، بوابة دفع آمنة، ونظام تتبع الطلبات.",
+      en: "Multi-branch inventory ERP with real-time analytics, Redis-cached dashboards, automated low-stock alerts, full audit trail, and PDF report generation.",
+      ar: "نظام ERP متعدد الفروع لإدارة المخزون مع تحليلات فورية، لوحات معلومات مؤقتة بـ Redis، تنبيهات نقص المخزون، سجل تدقيق كامل، وتوليد تقارير PDF.",
     },
-    tags: ["React", "Laravel", "MySQL", "Stripe", "Redis"],
-    github: "#",
-    link: "#",
+    tags: ["React", "Laravel", "MySQL", "Redis", "Inertia.js", "TailwindCSS"],
+    github: "https://github.com/earth-lion/Apex-Flow",
+    link: "https://earth-lion.github.io/Apex-Flow/",
     category: "fullstack",
+    image: apexFlowImg,
   },
   // ── Frontend ─────────────────────────────────────────────────
   {
