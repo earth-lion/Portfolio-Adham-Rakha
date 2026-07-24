@@ -6,6 +6,7 @@ import loginImg from "../assets/My Work/login.webp";
 import portfolioImg from "../assets/My Work/portfolio.webp";
 import smartStudentPortalImg from "../assets/My Work/smart student portal.webp";
 import apexFlowImg from "../assets/My Work/apex-flow.png";
+import omniscaleAiImg from "../assets/My Work/omniscale-ai.png";
 
 function useInView(t = 0.1) {
   const ref = useRef(null);
@@ -28,6 +29,22 @@ const PROJECTS = [
   {
     id: 1,
     title: {
+      en: "OmniScale AI — SaaS Marketing Automation",
+      ar: "OmniScale AI — منصة أتمتة التسويق الذكية",
+    },
+    desc: {
+      en: "Enterprise SaaS platform with autonomous AI advisor, real-time sales forecasting, drag-and-drop workflow builders, multilingual i18n support, and system outbox logger.",
+      ar: "منصة SaaS متكاملة للمؤسسات مع مستشار ذكاء اصطناعي ذاتي، تنبؤ مبيعات فوري، باني أتمتة مرئي للرسائل، دعم كامل للغتين ومراقبة صحة النظام.",
+    },
+    tags: ["React", "Laravel", "MySQL", "TailwindCSS", "Recharts", "AI Analytics"],
+    github: "https://github.com/earth-lion/omniscale-ai",
+    link: "https://earth-lion.github.io/omniscale-ai/",
+    category: "fullstack",
+    image: omniscaleAiImg,
+  },
+  {
+    id: 2,
+    title: {
       en: "Bistro Bliss — Restaurant Portal",
       ar: "Bistro Bliss — بوابة المطعم",
     },
@@ -42,7 +59,7 @@ const PROJECTS = [
     image: bistroBlissImg,
   },
   {
-    id: 2,
+    id: 3,
     title: { en: "Smart Student Portal", ar: "بوابة الطالب الذكية" },
     desc: {
       en: "University dashboard with course scheduler, exam engine, grade analytics charts, and real-time teacher feedback channels.",
@@ -55,7 +72,7 @@ const PROJECTS = [
     image: smartStudentPortalImg,
   },
   {
-    id: 3,
+    id: 4,
     title: { en: "ApexFlow — Enterprise ERP", ar: "ApexFlow — نظام ERP للمؤسسات" },
     desc: {
       en: "Multi-branch inventory ERP with real-time analytics, Redis-cached dashboards, automated low-stock alerts, full audit trail, and PDF report generation.",
@@ -69,7 +86,7 @@ const PROJECTS = [
   },
   // ── Frontend ─────────────────────────────────────────────────
   {
-    id: 4,
+    id: 5,
     title: { en: "Interactive Luxury Portfolio", ar: "معرض أعمال تفاعلي راقٍ" },
     desc: {
       en: "A high-end developer portfolio featuring glassmorphic UI, custom particles backdrop, 3D tilt interaction, smooth page navigation, and full bi-lingual support.",
@@ -82,7 +99,7 @@ const PROJECTS = [
     image: portfolioImg,
   },
   {
-    id: 5,
+    id: 6,
     title: {
       en: "Modern Login & Registration Portal",
       ar: "بوابة تسجيل دخول وإنشاء حساب",
@@ -104,7 +121,7 @@ const PROJECTS = [
     image: loginImg,
   },
   {
-    id: 6,
+    id: 7,
     title: { en: "Task Management App", ar: "تطبيق إدارة المهام" },
     desc: {
       en: "Kanban-style productivity application with drag-and-drop boards, team collaboration features, and real-time progress analytics.",
